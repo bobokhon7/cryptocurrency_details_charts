@@ -7,6 +7,30 @@ export const Container = styled.div`
   align-items: center;
   background-color: #243b55;
 `;
+export const GoHomeButton = styled.button`
+  width: 130px;
+  height: 36px;
+  background: rgb(126, 211, 33);
+  border: 1px solid rgb(126, 211, 33);
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  transition-duration: 0.4s;
+  transform: scale(0.9);
+  &:hover {
+    background-color: white; /* Green */
+    color: rgb(126, 211, 33);
+  }
+  &:active {
+    box-shadow: rgb(126, 211, 33) 0px 3px 10px;
+  }
+`;
 
 export const CardContainer = styled.div`
   display: flex;
@@ -27,7 +51,7 @@ export const Image = styled.img`
   height: 120px;
   width: 120px;
   position: absolute;
-  top: 20px;
+  top: 5px;
 `;
 
 export const Title = styled.div`
@@ -80,7 +104,7 @@ export const LineChart = styled.div`
 export const Descreption = styled.div`
   margin-top: 50px;
   width: 700px;
-  height: 400px;
+  height: 350px;
   @media only screen and (max-width: 770px) {
     width: 300px;
     height: 800px;
