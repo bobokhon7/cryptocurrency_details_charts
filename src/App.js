@@ -2,7 +2,7 @@ import CardData from "./Components/CardData";
 import "./App.css";
 import CoinRouteInfo from "./Components/CoinRouteInfo";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>

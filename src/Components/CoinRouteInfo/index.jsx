@@ -1,16 +1,17 @@
 import React,{useState,useEffect} from 'react'
-import { useHistory ,useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import axios from 'axios'
-import {Container,CardContainer,Image,Officailweb,Title,LineChart,MediaWrapper,IconSize,GoHomeButton,Descreption} from './style'
-import { RedditOutlined,TwitterOutlined,GithubOutlined,DoubleLeftOutlined } from '@ant-design/icons'
+import {Container,CardContainer,Image,Officailweb,Title,LineChart,MediaWrapper,IconSize,Descreption} from './style'
+import { RedditOutlined,TwitterOutlined,GithubOutlined } from '@ant-design/icons'
 import { Line } from "react-chartjs-2";
 import coinGecko from "../api/coinGecko"
 const CoinRouteInfo = () => {
 
    const {id} = useParams()
-   let history = useHistory();
    const[coinDetails,setCoinDetails] = useState([])
    const[marketHistory,setMarketHistory] = useState([])
+   const[isLoading,setIsLoading] = useState(false)
+
    const {week } = marketHistory;
   
    const baseURL = `https://api.coingecko.com/api/v3/coins/${id}`
@@ -18,6 +19,7 @@ const CoinRouteInfo = () => {
       axios.get(baseURL).then(res => {
          const info = res.data
          setCoinDetails(info)
+         setIsLoading(true)
       }).catch((error) =>{
          console.log(error);
       })
@@ -44,13 +46,12 @@ const CoinRouteInfo = () => {
         setMarketHistory({
           week: formatData(week.data.prices),
         });
+        setIsLoading(true)
       
       };
       fetchData();
     }, [id]);
-   function handleClick() {
-     history.push("/");
-   }
+ 
   //  console.log(marketHistory);
   console.log(coinDetails);
 const data = {
@@ -67,7 +68,7 @@ const data = {
 };
    return (
       <Container>
-        <CardContainer>
+        {isLoading? (<><CardContainer>
          <Image src={coinDetails?.image?.large }/>
          <Title>{coinDetails?.localization?.ko}{coinDetails?.localization?.en}</Title>
          <MediaWrapper changeSize>
@@ -92,12 +93,11 @@ const data = {
       </LineChart>
 
       <Descreption>
-         <h4>Description/기술</h4>
-         <p style={{marginTop:"15px"}}>{(coinDetails?.description?.ko)?.slice(0,471)}</p>
+         <h4>Description</h4>
          <p  style={{marginTop:"15px"}}>{(coinDetails?.description?.en)?.slice(0,458)}</p>
-      </Descreption>
-      <GoHomeButton type="button" onClick={handleClick}>
-      <DoubleLeftOutlined style={{paddingRight:"5px"}} />Continue </GoHomeButton>
+      </Descreption></>):(<img alt="loading" src='https://thumbs.gfycat.com/CriminalWhichEasteuropeanshepherd-size_restricted.gif'/>)}
+        
+     
       </Container>
    )
 }

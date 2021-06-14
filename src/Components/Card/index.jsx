@@ -1,41 +1,43 @@
 import React from 'react'
-import { Typography, Grid  ,Card,CardMedia } from '@material-ui/core';
-import CountUp from "react-countup"
-import{Container,CardStyle,ImageTag} from  "./style"
-import { CaretUpOutlined,CaretDownOutlined } from '@ant-design/icons'
+import {  Link } from "react-router-dom";
+import "./style.css"
+// import{Container,CoinRow,CoinDetail,CoinImg,CoinTitle,CoinData} from  "./style"
 const Cards = ({coins}) => {
+   console.log(coins);
    return (
-      <Container > 
-         
-         <Grid container spacing={3}  justify="center">
-          
-            <Grid   item component={Card}>
-            <CardStyle>
-               <Typography  variant="h5"  gutterBottom>{coins.name}</Typography>
-               
-               <ImageTag>
-              <CardMedia
-                 component="img"
-                 // alt="Contemplative Reptile"
-                 height="50"
-                 width ="10"
-                 image={coins.image}
-                 // title="Contemplative Reptile"
-            />
-         </ImageTag>
-               <Typography variant="h5">Price: $<CountUp start={0} end={coins.current_price} separator="," /></Typography>
-           
-              <Typography variant="h6" color="textSecondary" >Last Updated: {new Date(coins.last_updated).toDateString()}</Typography>
-               {(coins.price_change_percentage_24h).toFixed(2) < 0 ? 
-               (  <Typography color="error" variant="h6"> <span style={{color:"black"}}>Percentage 24h:</span> {(coins.price_change_percentage_24h).toFixed(2)}% <CaretDownOutlined /></Typography>) 
-               : (<Typography style={{color:"green"}} variant="h6"> <span style={{color:"black"}}>Percentage 24h:</span> {(coins.price_change_percentage_24h).toFixed(2)}% <CaretUpOutlined /></Typography>)}
-             <Typography  variant="h6"  gutterBottom>Market Cap: {coins.market_cap_change_24h.toLocaleString()}</Typography>
-            </CardStyle>
-            </Grid>
+      <div className="mainContainer">
      
-         </Grid>  
-         {/* <h1>{getData[0].name}</h1> */}
-      </Container>
+         {coins.map((value) => (
+            <div key={value.id}  className="coin-container">
+               <Link  key={value.id} style={{textDecoration:"none", color:"black"}} to={`/${value.id}`} >
+      <div className="coin-row">
+        <div className="coin">
+          <img src={value.image} alt="crypto" />
+          <h1>{value.name}</h1>
+          <p className="coin-symbol">{value.symbol}</p>
+        </div>
+        <div className="coin-data">
+          <p className="coin-price">${value?.current_price}</p>
+          <p className="coin-volume">${value.total_volume.toLocaleString()}</p>
+
+          {value.price_change_percentage_24h < 0 ? (
+            <p className="coin-percent red">{(value.price_change_percentage_24h ).toFixed(2)}%</p>
+          ) : (
+            <p className="coin-percent green">{(value.price_change_percentage_24h).toFixed(2)}%</p>
+          )}
+
+          <p className="coin-marketcap">${value.market_cap.toLocaleString()}</p>
+        </div>
+      </div>
+      </Link>
+    </div>  ))
+    }
+    </div>
+  
+
+
+
+     
    )
 }
 

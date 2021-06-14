@@ -5,31 +5,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #243b55;
-`;
-export const GoHomeButton = styled.button`
-  width: 130px;
-  height: 36px;
-  background: rgb(126, 211, 33);
-  border: 1px solid rgb(126, 211, 33);
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: "SF Pro Display";
-  font-style: normal;
-  transition-duration: 0.4s;
-  transform: scale(0.9);
-  &:hover {
-    background-color: white; /* Green */
-    color: rgb(126, 211, 33);
-  }
-  &:active {
-    box-shadow: rgb(126, 211, 33) 0px 3px 10px;
-  }
+  /* background-color: #243b55; */
 `;
 
 export const CardContainer = styled.div`
@@ -109,6 +85,6 @@ export const Descreption = styled.div`
     width: 300px;
     height: 800px;
   }
-  background-color: #243b55;
-  color: white;
+  /* background-color: #243b55; */
+  color: black;
 `;
