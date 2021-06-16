@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {  useParams } from "react-router-dom";
 import axios from 'axios'
-import {Container,LineChart,LinkBox,LinkTag,DataContainer,CoinWrapper,InfoWrapper,MarketInfoWrapper,Image,CoinPrice,CoinTitle,MediaWrapper,Box1,MoneyInfoWrapper,TextTitle} from './style'
+import {Container,LineChart,LinkBox,LinkTag,DataContainer,CoinWrapper,InfoWrapper,MarketInfoWrapper,Image,CoinPrice,CoinTitle,MediaWrapper,Box1,MoneyInfoWrapper,Descreption,TextTitle} from './style'
 import { RedditOutlined,TwitterOutlined,GithubOutlined } from '@ant-design/icons'
 import { Line } from "react-chartjs-2";
 import coinGecko from "../api/coinGecko"
@@ -54,7 +54,7 @@ const CoinRouteInfo = () => {
     }, [id]);
  
   //  console.log(marketHistory);
-  console.log(coinDetails);
+  // console.log(coinDetails);
 const data = {
    labels: week?.map(( date ) => new Date(date.t).toLocaleDateString()),
   datasets: [
@@ -88,11 +88,12 @@ const data = {
             <Box1>Rank #{coinDetails.coingecko_rank}</Box1>
           </MediaWrapper>
           <MediaWrapper>
-            <CoinTitle FontSize>Website</CoinTitle>
+            {coinDetails?.links?.homepage[0] ? (<><CoinTitle FontSize>Website</CoinTitle>
             <LinkBox changeWidth> 
               <LinkTag target="_blank"  href={coinDetails?.links?.homepage[0]} alt="coin">
                 {`${coinDetails?.links?.homepage[0]}`}</LinkTag>
-              </LinkBox>
+              </LinkBox></>): null}
+            
           </MediaWrapper>
           <MediaWrapper>
             <CoinTitle>Coomunity</CoinTitle>
@@ -194,11 +195,11 @@ const data = {
         <LineChart>
         <Line data={data} />
          
-        {/* {coinDetails?.description?.en?(<Descreption>
+        {coinDetails?.description?.en?(<Descreption>
         <h5 style={{textAlign:"center",fontSize:"30px"}}><strong>Descreption</strong></h5>
           {coinDetails?.description?.en}
         </Descreption>): null}
-         */}
+        
         </LineChart>
         <Footer/>
     </>):

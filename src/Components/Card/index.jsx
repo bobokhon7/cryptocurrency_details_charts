@@ -3,7 +3,7 @@ import {  Link } from "react-router-dom";
 import "./style.css"
 // import{Container,CoinRow,CoinDetail,CoinImg,CoinTitle,CoinData} from  "./style"
 const Cards = ({coins}) => {
-   console.log(coins);
+  //  console.log(coins);
    return (
       <div className="mainContainer">
      

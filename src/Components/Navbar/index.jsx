@@ -5,7 +5,7 @@ import{NavContainer} from  "./style"
 const CryptoNavbar = () => {
    return (
       <NavContainer>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="#303030" variant="dark">
         <Container>
           <Navbar.Brand href="/">
             <img
