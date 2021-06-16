@@ -8,60 +8,98 @@ export const Container = styled.div`
   /* background-color: #243b55; */
 `;
 
-export const CardContainer = styled.div`
+export const DataContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  width: 80%;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+
+export const InfoWrapper = styled.div`
+  display: flex;
+  /* width: 400px; */
+`;
+export const MarketInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* border: 1px solid #2fffe5; */
-  border-radius: 10px;
-  height: 200px;
-  padding: 4rem;
-  width: 150px;
-  margin-top: 50px;
-  background-color: #065978;
+  margin-left: auto;
+  @media only screen and (max-width: 770px) {
+    margin-top: 20px;
+    /* width: 300px; */
+    margin-left: 0;
+  }
+  /* width: 400px; */
+`;
+
+export const CoinWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Image = styled.img`
-  /* margin-bottom: 1rem; */
-  height: 120px;
-  width: 120px;
-  position: absolute;
-  top: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
 `;
 
-export const Title = styled.div`
-  /* margin-top: 1rem; */
-  color: white;
-  font-size: ${(props) => (props.sizeChange ? "15px" : "22px")};
-  padding: ${(props) => (props.sizeChange ? "0 20px" : "0px")};
-  justify-content: center;
-  text-align: center;
+export const CoinTitle = styled.div`
+  font-size: 16px;
 `;
 
 export const MediaWrapper = styled.div`
   display: flex;
-  margin-top: ${(props) => (props.changeSize ? "30px" : "0px")};
+  flex-direction: row;
+  padding: 3px;
 `;
 
-export const IconSize = styled.div`
-  font-size: 50px;
-  padding: 0 20px;
-  color: ${(props) => (props.changeColor ? "white" : "red")};
+export const LinkBox = styled.div`
+  height: 35px;
+  width: ${(props) => (props.changeWidth ? "190px" : "120px")};
+  background-color: #f8f9fa;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 8px;
+  margin-left: ${(props) => (props.move ? "67px" : "45px")};
+  justify-content: flex-end;
 `;
-export const Officailweb = styled.button`
-  width: 100px;
-  display: flex;
-  position: relative;
-  top: 70px;
-  cursor: pointer;
+
+export const Box1 = styled.div`
+  /* display: grid; */
+  height: 35px;
+  width: ${(props) => (props.changeView ? "100px" : "100px")};
   color: white;
-  text-decoration: none;
-  &:active {
-    transform: scale(0.95);
+  background-color: ${(props) => (props.changeView ? "#f8f9fa" : "black")};
+  padding: 5px;
+  margin-left: ${(props) => (props.changeMargin ? "10px" : "22px")};
+  text-align: center;
+  color: ${(props) => (props.changeView ? "black" : "white")};
+  :hover {
+    color: rgb(126, 211, 33);
   }
-  right: ${(props) => (props.leftChange ? "0px" : "50px")};
-  left: ${(props) => (props.leftChange ? "20px" : "0px")};
+  border-radius: 8px;
+`;
+
+export const LinkTag = styled.a`
+  text-decoration: none;
+  color: black;
+  transform: scale(0.9);
+  :hover {
+    color: rgb(126, 211, 33);
+  }
+`;
+export const CoinPrice = styled.div`
+  font-size: 30px;
+`;
+export const MoneyInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const TextTitle = styled.div`
+  font-size: ${(props) => (props.changeFontSize ? "15px" : "20px")};
 `;
 
 export const LineChart = styled.div`
@@ -69,22 +107,25 @@ export const LineChart = styled.div`
   height: 100%;
   background: white;
   color: black;
-  width: 700px;
+  width: 80%;
   font-family: sans-serif;
   text-align: center;
   @media only screen and (max-width: 770px) {
-    width: 300px;
+    width: 400px;
   }
+  padding-bottom: 80px;
 `;
 
 export const Descreption = styled.div`
-  margin-top: 50px;
-  width: 700px;
-  height: 350px;
+  margin-top: 20px;
+  padding: 30px;
   @media only screen and (max-width: 770px) {
-    width: 300px;
-    height: 800px;
+    /* padding: 30px; */
+    text-align: start;
+    width: 400px;
+    margin-right: 0;
   }
-  /* background-color: #243b55; */
   color: black;
+
+  text-align: start;
 `;

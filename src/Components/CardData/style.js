@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* background-color: #243b55; */
+  background-color: white;
   /* justify-content: center;
   align-items: center; */
+  color: white;
 `;
 
 export const SpinnerLoading = styled.div`

@@ -26,7 +26,7 @@ const Cards = ({coins}) => {
             <p className="coin-percent green">{(value.price_change_percentage_24h).toFixed(2)}%</p>
           )}
 
-          <p className="coin-marketcap">${value.market_cap.toLocaleString()}</p>
+          <p className="coin-marketcap">Mkt Cap:${value.market_cap.toLocaleString()}</p>
         </div>
       </div>
       </Link>

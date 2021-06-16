@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import {  useParams } from "react-router-dom";
 import axios from 'axios'
-import {Container,CardContainer,Image,Officailweb,Title,LineChart,MediaWrapper,IconSize,Descreption} from './style'
+import {Container,LineChart,LinkBox,LinkTag,DataContainer,CoinWrapper,InfoWrapper,MarketInfoWrapper,Image,CoinPrice,CoinTitle,MediaWrapper,Box1,MoneyInfoWrapper,TextTitle} from './style'
 import { RedditOutlined,TwitterOutlined,GithubOutlined } from '@ant-design/icons'
 import { Line } from "react-chartjs-2";
 import coinGecko from "../api/coinGecko"
+import Footer from '../Footer';
 const CoinRouteInfo = () => {
 
    const {id} = useParams()
@@ -38,7 +39,7 @@ const CoinRouteInfo = () => {
           coinGecko.get(`/coins/${id}/market_chart/`, {
             params: {
               vs_currency: "usd",
-              days: "7",
+              days: "30",
             },
           }),
           
@@ -58,46 +59,152 @@ const data = {
    labels: week?.map(( date ) => new Date(date.t).toLocaleDateString()),
   datasets: [
     {
-      label: `${coinDetails?.localization?.ko} / ${coinDetails?.localization?.en}`,
+      label: `${coinDetails?.localization?.en}`,
       data: week?.map((value) => value.y),
+      
       fill: false,
-      backgroundColor: "#c2d6d633",
-      borderColor: "#64c04b"
+      backgroundColor: "#29bdbd33",
+      borderColor: "#64c04b",
+      circular: false,
+      
+      
    }
   ],
 };
+
    return (
       <Container>
-        {isLoading? (<><CardContainer>
-         <Image src={coinDetails?.image?.large }/>
-         <Title>{coinDetails?.localization?.ko}{coinDetails?.localization?.en}</Title>
-         <MediaWrapper changeSize>
-            <IconSize>  <RedditOutlined /></IconSize>
-            <IconSize changeColor> <TwitterOutlined /></IconSize>
-         </MediaWrapper>
-         
-         <MediaWrapper >
-            <Title sizeChange >{(coinDetails?.community_data?.reddit_subscribers)?.toLocaleString()}</Title>
-            <Title sizeChange >{(coinDetails?.community_data?.twitter_followers)?.toLocaleString()}</Title>
-         </MediaWrapper>
+        {isLoading? 
+     (<>
+      <DataContainer>
+        <InfoWrapper>
+           <CoinWrapper>
 
-         <MediaWrapper>
-         <Officailweb  as='a' target='_blank' href={coinDetails?.links?.blockchain_site[0]}>Offical Website</Officailweb>
+          <CoinTitle>
+            <Image src={coinDetails?.image?.large}/>   {coinDetails.name} ({(coinDetails?.symbol?.toUpperCase())})
+          </CoinTitle>
+          <MediaWrapper>
+            <CoinTitle FontSize>Market Cap</CoinTitle>
+            <Box1>Rank #{coinDetails.coingecko_rank}</Box1>
+          </MediaWrapper>
+          <MediaWrapper>
+            <CoinTitle FontSize>Website</CoinTitle>
+            <LinkBox changeWidth> 
+              <LinkTag target="_blank"  href={coinDetails?.links?.homepage[0]} alt="coin">
+                {`${coinDetails?.links?.homepage[0]}`}</LinkTag>
+              </LinkBox>
+          </MediaWrapper>
+          <MediaWrapper>
+            <CoinTitle>Coomunity</CoinTitle>
+            <Box1 changeView> 
+            <LinkTag target="_blank" href={coinDetails?.links?.subreddit_url} >
+              <RedditOutlined style={{fontSize:"20px",justifyContent:"center",alignItems:"center",position:"relative", left:"-5px",bottom:"4px"}}/>
+                Reddit
+            </LinkTag>
+            </Box1>
+            
+            <Box1 changeView> 
+            <LinkTag target="_blank" href={coinDetails?.links?.subreddit_url} >
+              <TwitterOutlined style={{fontSize:"20px",justifyContent:"center",alignItems:"center",position:"relative", left:"-5px",bottom:"4px"}}/>
+              Twitter
+            </LinkTag>
+            </Box1>
+             
+            {/* <Box1 changeView> 
+            <LinkTag target="_blank" href={`https://www.facebook.com/${id}`} >
+              <FacebookOutlined style={{fontSize:"20px",justifyContent:"center",alignItems:"center",position:"relative", left:"-5px",bottom:"4px"}}/>
+                Facebook
+            </LinkTag>
+            </Box1> */}
+          </MediaWrapper>
+             
+          <MediaWrapper>
+             <CoinTitle>Source Code</CoinTitle>
+            <Box1 changeView changeMargin>
+            <LinkTag target="_blank" href={coinDetails?.links?.repos_url?.github[0]} >
+              <GithubOutlined style={{fontSize:"20px",justifyContent:"center",alignItems:"center",position:"relative", left:"-5px",bottom:"4px"}}/>
+                Github
+            </LinkTag>
+            </Box1>
+          </MediaWrapper>
+          <MediaWrapper>
+             <CoinTitle>Tags</CoinTitle>
+            <LinkBox changeView changeMargin move>
+            <LinkTag target="_blank" href='https://www.coingecko.com/en/categories/cryptocurrency' >
+    
+              Cryptocurrency
+            </LinkTag>
+            </LinkBox>
+          </MediaWrapper>
+          </CoinWrapper>
         
-         <Officailweb  leftChange as='a' target='_blank' href={coinDetails?.links?.repos_url?.github[0]}><GithubOutlined style={{marginRight:"5px"}}/>  Github</Officailweb>
-         </MediaWrapper>
-      </CardContainer>
-  
-      <LineChart>
-      <Line data={data} />
-      </LineChart>
+        
+        </InfoWrapper>
 
-      <Descreption>
-         <h4>Description</h4>
-         <p  style={{marginTop:"15px"}}>{(coinDetails?.description?.en)?.slice(0,458)}</p>
-      </Descreption></>):(<img alt="loading" src='https://thumbs.gfycat.com/CriminalWhichEasteuropeanshepherd-size_restricted.gif'/>)}
-        
+        <MarketInfoWrapper>
+        <CoinPrice>
+        ${(coinDetails?.market_data?.current_price?.usd)?.toLocaleString()} 
+
+    
+        {coinDetails?.market_data?.price_change_percentage_24h < 0 ? 
+        ( <span style={{fontSize:"20px",color:"red",padding:"5px"}}>{(coinDetails?.market_data?.price_change_percentage_24h)?.toFixed(2)}%</span>) :
+        ( <span style={{fontSize:"20px",color:"green",padding:"5px"}}>{(coinDetails?.market_data?.price_change_percentage_24h)?.toFixed(2)}%</span>)}
+        </CoinPrice>
+       
+       <MoneyInfoWrapper>
+         {coinDetails?.market_data?.market_cap?.usd?(<>   
+          <TextTitle>
+           <strong>Market Cap</strong>
+         </TextTitle>
+         <TextTitle changeFontSize>
+           ${(coinDetails?.market_data?.market_cap?.usd)?.toLocaleString()}
+         </TextTitle></>): null}
      
+
+          {coinDetails?.market_data?.max_supply?(<>  <TextTitle>
+           <strong>Max Supply</strong>
+         </TextTitle>
+         <TextTitle changeFontSize>
+           ${(coinDetails?.market_data?.max_supply)?.toLocaleString()}
+         </TextTitle></>): null}
+       
+        {coinDetails?.market_data?.total_volume?.usd?(<>
+        <TextTitle>
+           <strong>Total Valume</strong>
+         </TextTitle>
+         <TextTitle changeFontSize>
+           ${(coinDetails?.market_data?.total_volume?.usd)?.toLocaleString()}
+         </TextTitle></>):null}
+         
+         {coinDetails?.market_data?.low_24h?.usd && coinDetails?.market_data?.high_24h?.usd ?(<> 
+         <TextTitle>
+           <strong>24h Low / 24h High</strong>
+         </TextTitle>
+         <TextTitle changeFontSize>
+           ${(coinDetails?.market_data?.low_24h?.usd)?.toLocaleString()} / ${(coinDetails?.market_data?.high_24h?.usd)?.toLocaleString()}
+         </TextTitle></>):
+        null}
+         
+
+       </MoneyInfoWrapper>
+
+        </MarketInfoWrapper>
+      </DataContainer>
+               
+        <LineChart>
+        <Line data={data} />
+         
+        {/* {coinDetails?.description?.en?(<Descreption>
+        <h5 style={{textAlign:"center",fontSize:"30px"}}><strong>Descreption</strong></h5>
+          {coinDetails?.description?.en}
+        </Descreption>): null}
+         */}
+        </LineChart>
+        <Footer/>
+    </>):
+    (<img alt="loading" src='https://thumbs.gfycat.com/CriminalWhichEasteuropeanshepherd-size_restricted.gif'/>)}
+        
+ 
       </Container>
    )
 }
