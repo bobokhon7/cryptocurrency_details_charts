@@ -1,0 +1,19 @@
+.price {
+  height: 30px;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid #d7d7d7;
+  /* border-top: 1px solid #d7d7d7; */
+
+  /* margin-top: 30px; */
+  padding: 20px;
+}
+h6 {
+  color: black;
+}
+.priceWrapper {
+  padding: 0 200px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}

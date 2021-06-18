@@ -54,7 +54,7 @@ const CoinRouteInfo = () => {
     }, [id]);
  
   //  console.log(marketHistory);
-  // console.log(coinDetails);
+  console.log(coinDetails);
 const data = {
    labels: week?.map(( date ) => new Date(date.t).toLocaleDateString()),
   datasets: [
@@ -196,8 +196,8 @@ const data = {
         <Line data={data} />
          
         {coinDetails?.description?.en?(<Descreption>
-        <h5 style={{textAlign:"center",fontSize:"30px"}}><strong>Descreption</strong></h5>
-          {coinDetails?.description?.en}
+        <h5 style={{textAlign:"center",fontSize:"30px"}}><strong>Description</strong></h5>
+          {(coinDetails?.description?.en)?.replace(/<[^>]+>/g, '')}
         </Descreption>): null}
         
         </LineChart>

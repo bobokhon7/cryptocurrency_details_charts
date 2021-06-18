@@ -3,7 +3,7 @@ import {  Link } from "react-router-dom";
 import "./style.css"
 // import{Container,CoinRow,CoinDetail,CoinImg,CoinTitle,CoinData} from  "./style"
 const Cards = ({coins}) => {
-  //  console.log(coins);
+   console.log(coins);
    return (
       <div className="mainContainer">
      
@@ -11,7 +11,8 @@ const Cards = ({coins}) => {
             <div key={value.id}  className="coin-container">
                <Link  key={value.id} style={{textDecoration:"none", color:"black"}} to={`/${value.id}`} >
       <div className="coin-row">
-        <div className="coin">
+       <h6 style={{paddingRight:"20px"}} >{value.market_cap_rank}</h6> 
+       <div className="coin">
           <img src={value.image} alt="crypto" />
           <h1>{value.name}</h1>
           <p className="coin-symbol">{value.symbol}</p>

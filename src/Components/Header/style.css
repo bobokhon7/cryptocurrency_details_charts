@@ -1,0 +1,52 @@
+.nameContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  border-bottom: 1px solid #d7d7d7;
+  justify-content: center;
+  width: 75%;
+  color: black;
+  margin-left: 190px;
+}
+
+.currencyMarket {
+  margin-left: 100px;
+}
+.currencyMarket h5 {
+  margin-right: 20px;
+  color: black;
+}
+.currencyName {
+  margin-left: 0px;
+}
+.currencyName h5 {
+  margin-left: 0;
+  color: black;
+}
+.currencyPrice {
+  margin-left: 320px;
+}
+.currencyPrice h5 {
+  width: 100px;
+  text-align: center;
+  color: black;
+}
+
+.currencyPercent {
+  margin-left: 90px;
+  color: black;
+}
+.currencyPercent h5 {
+  text-align: center;
+  width: 90px;
+  color: black;
+}
+.currencyValume {
+  margin-left: 100px;
+  color: black;
+}
+
+.currencyValume h5 {
+  width: 75px;
+  color: black;
+}

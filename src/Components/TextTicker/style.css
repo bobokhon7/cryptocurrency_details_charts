@@ -1,0 +1,47 @@
+.tcontainer {
+  width: 100%;
+  overflow: hidden;
+  /* margin-top: 10px; */
+}
+
+/* MIDDLE CONTAINER */
+.ticker-wrap {
+  width: 100%;
+  padding-left: 100%; /* Push contents to right side of screen */
+  /* background-color: rgb(214, 212, 212); */
+  /* border-bottom: 1px solid #d7d7d7; */
+  box-shadow: 1px 1px 2px 2px black;
+}
+
+/* INNER CONTAINER */
+@keyframes ticker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.ticker-move {
+  /* Basically move items from right side of screen to left in infinite loop */
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100;
+  animation-name: ticker;
+  animation-duration: 70s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: -45s;
+}
+.ticker-move:hover {
+  animation-play-state: paused; /* Pause scroll on mouse hover */
+}
+
+/* ITEMS */
+.ticker-item {
+  display: inline-block; /* Lay items in a horizontal line */
+  padding: 0 1rem;
+  z-index: 2;
+  font-size: 1rem;
+  color: black !important;
+}

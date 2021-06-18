@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../../assets/Logo1.png'
+import Logo from '../../assets/logo1.png'
 
 import {
   Box,
@@ -7,24 +7,24 @@ import {
   Row,
   Column,
   FooterLink,
-  Heading,ImageLogo
+  Heading
 } from "./style";
   
 const Footer = () => {
   return (
     <Box>
      
-      <h1 style={{ color: "green", 
+      <h1 style={{ color: "#ff6701", 
                    textAlign: "center", 
                    marginTop: "-50px" }}>
-       <ImageLogo src={Logo} /> CoinGecko
+       <img alt="logo" style={{width:"50px", height:"50px"}} src={Logo}/> <span style={{color:"#ff6701", marginTop:"20px"}}> Crypto.Uz</span>
       </h1>
-      <h6 style={{fontSize:"20px",color: "green", 
-                   textAlign: "center", }}> CoinGecko tracks community growth, open-source code development, major events and on-chain metrics.</h6>
+      <h6 style={{fontSize:"20px",color: "white", 
+                   textAlign: "center", }}> <span style={{color:"#ff6701"}}> Crypto.Uz</span> tracks community growth, open-source code development, major events and on-chain metrics.</h6>
       <Container>
         <Row>
           <Column>
-            <Heading>CoinGecko</Heading>
+            <Heading>Crypto.Uz</Heading>
             <FooterLink href="#">About Us</FooterLink>
             <FooterLink href="#">Methodology</FooterLink>
             <FooterLink href="#">Careers</FooterLink>
@@ -76,7 +76,7 @@ const Footer = () => {
             </FooterLink>
           </Column>
         </Row>
-        <h6 style={{textAlign:"center", color:"white"}} >&copy; Copyright 2021 CoinGecko. All Rights Reserved</h6>
+        <h6 style={{textAlign:"center", color:"white"}} >&copy; Copyright 2021 Crypto.Uz All Rights Reserved</h6>
       </Container>
     </Box>
   );
