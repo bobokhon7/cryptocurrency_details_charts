@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from '../../assets/logo1.png'
+
 
 import {
   Box,
@@ -14,13 +14,7 @@ const Footer = () => {
   return (
     <Box>
      
-      <h1 style={{ color: "#ff6701", 
-                   textAlign: "center", 
-                   marginTop: "-50px" }}>
-       <img alt="logo" style={{width:"50px", height:"50px"}} src={Logo}/> <span style={{color:"#ff6701", marginTop:"20px"}}> Crypto.Uz</span>
-      </h1>
-      <h6 style={{fontSize:"20px",color: "white", 
-                   textAlign: "center", }}> <span style={{color:"#ff6701"}}> Crypto.Uz</span> tracks community growth, open-source code development, major events and on-chain metrics.</h6>
+     
       <Container>
         <Row>
           <Column>
